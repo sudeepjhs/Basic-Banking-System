@@ -1,0 +1,51 @@
+#intro{
+    width: auto;
+    height: 400px;
+    background-color: #161d6f;
+}
+body{
+    overflow-x: hidden;
+}
+#intro > h1{
+    background: rgb(234,91,9);
+    background: linear-gradient(0deg, rgba(234,91,9,1) 11%, rgba(255,255,255,1) 50%, rgba(31,235,7,1) 89%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    position: relative;
+    top: 100px;
+    left: 23%;
+    -webkit-animation-duration: 10s;
+    animation-duration: 10s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-delay: 2ms;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+#intro > button{
+    position: relative;
+    top: 150px;
+    left: 45%;
+}
+.icons > img{
+    width: 75px;
+    height: 75px;
+    margin-bottom: 20px;
+}
+.icons{
+    display: inline-block;
+    margin: 0px 140px;
+    text-align: center;
+}
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+ }
+ 
+ @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+ }
