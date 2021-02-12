@@ -37,8 +37,12 @@ function transferMoney() {
             success: function (response) {
                 $("#transferDetail").html(response);
                 fetchCustomer();
-                console.log("hi");                
             }
         });
     });
+}
+
+function openTransaction(t) {
+    let id = $(t).data("cid");
+    window.location.href = "transaction.php?cid="+id;
 }

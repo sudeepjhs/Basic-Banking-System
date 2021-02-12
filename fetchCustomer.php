@@ -14,7 +14,7 @@ if($myconn->connect_errno > 0){
                     <td>".$row["email"]."</td>
                     <td>".$row["balance"]."</td>
                     <td><button type='button' onclick='openTransfer(this)' data-toggle='modal' data-target='#transferModel' data-cid=".$row['id']." class='btn btn-primary'>Transfer</button>
-                    <button type='button' data-cid=".$row['id']." class='btn btn-info'>Veiw Transaction</button>
+                    <button type='button' onclick='openTransaction(this)' data-cid=".$row['id']." class='btn btn-info'>Veiw Transaction</button>
                     </td>
                 </tr>
             ";

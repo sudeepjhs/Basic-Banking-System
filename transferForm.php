@@ -9,20 +9,29 @@ if($myconn->connect_errno > 0){
 if($_SERVER['REQUEST_METHOD'] =="POST"){
 
     if(isset($_POST["sender"]) && isset($_POST["receiver"]) && isset($_POST["amount"])){
-        
+        $date = Date("d M y");       
         $sender = $_POST["sender"];
         $receiver = $_POST["receiver"];
         $amount = $_POST["amount"];
-        $q = "SELECT balance FROM customer WHERE id = '$sender' AND balance >= $amount";
+        $q = "SELECT balance,name FROM customer WHERE id = '$sender' AND balance >= $amount";
         $result = $myconn->query($q);
         if ( $result->num_rows > 0){
             $row = $result->fetch_assoc();
             $balance = $row['balance'];
-            $balance = $balance- $amount;
+            $senderName = $row['name'];
+            $balance = $balance - $amount;
             $q = "UPDATE customer SET balance = '$balance' WHERE id = '$sender'";
             if($myconn->query($q) == TRUE){
                 $q = "UPDATE customer SET balance = balance + $amount WHERE id = '$receiver'";
                 if($myconn->query($q) == TRUE){
+                    $q = "SELECT name FROM customer WHERE id = '$receiver'";
+                    $result = $myconn->query($q);
+                    if ( $result->num_rows > 0){
+                        $row = $result->fetch_assoc();
+                        $receiverName = $row['name'];
+                    }
+                    $q = "INSERT INTO transactions (sender, receiver, amount,dates) VALUES ('".$senderName."','".$receiverName."','".$amount."','".$date."')";
+                    $myconn->query($q);
                     echo "<div style='color:green;'>Transfer Sucessfully ...</div>";
                     exit();
                 }
